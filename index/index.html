@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Responsive Registration form </title>
+	<link rel="stylesheet" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	
+	</style>
+</head>
+<body>
+  <div class="container">
+	<div class="title">Registration</div> 
+		<form id="myform" action="welcomepage.html" method="post">
+			<div class="user-details">
+			
+				<div class="input-box">
+					<span class="details">Full Name</span>
+					<input type="text" id="fname" placeholder="Enter your Name" onkeyup="check_letters(document.getElementById('fname'))" />
+				</div>
+				<div class="input-box">
+					<span class="details">Username</span>
+					<input type="text" id="usrname" placeholder="Enter your Username" onkeyup="check_letters(document.getElementById('usrname'))" />
+				</div>
+				<div class="input-box">
+					<span class="details">Email</span>
+					<input id="email" placeholder="Enter your Email"  />
+				</div>
+				<div class="input-box">
+					<span class="details">Phone Number</span>
+					<input type="tel" id="phonenumber" placeholder="Enter your Phone Number"  />
+				</div>
+				<div class="input-box">
+					<span class="details">Password</span>
+					<input type="password" id="pass" placeholder="Enter your Password"  />
+				</div>
+				<div class="input-box">
+					<span class="details">Confirm Password</span>
+					<input type="password" id="conf_pass" placeholder="Cofirm your Password"  />
+				</div>
+	
+			</div>
+			
+
+			<button onclick="return pass_validation()">
+			<span class="btnText"> Register</span>
+			</button>
+			
+
+		</form	>
+  </div>
+
+</body>
+<script>
+
+document.getElementById("myform").onsubmit = function() { return empty_value(); }
+
+
+function empty_value()
+{
+	var fname= document.getElementById("fname").value.toLowerCase();
+	var usrname= document.getElementById("usrname").value.toLowerCase();
+	var email= document.getElementById("email").value.toLowerCase();
+	var phn = document.getElementById("phonenumber").value.toLowerCase();
+	var pswrd = document.getElementById("pass").value.toLowerCase();
+	var cnf_pass = document.getElementById("conf_pass").value.toLowerCase();
+	var email_rx =  /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+	var contact_rx = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+	var alph_rx = /^[A-Za-z]+$/;
+	
+	
+	if (!fname || !usrname || !email || !phn || !pswrd || !cnf_pass)
+	{
+		alert("PLEASE FILL ALL THE DETAILS CORRECTLY");
+		return false;
+	}
+	
+	
+	
+	else if (!email_rx.test(email))
+	{
+		alert("Not Valid email address");
+		return false;
+	}
+	
+	else if (!contact_rx.test(phn))
+	{
+		alert("Not valid Number");
+		return false;
+	}
+}
+
+
+function pass_validation(){
+	
+	var password = document.getElementById("pass");
+	var confirm_password = document.getElementById("conf_pass");
+	if(password.value.length<6){
+		alert("password length is too short");
+		return false;
+	}
+	
+	if(password.value !== confirm_password.value)
+	{
+		alert("Password do not match");
+		return false;
+	}
+	return true;
+}
+
+function check_letters(name){
+	
+	var alph_rx = /^[A-Za-z]+$/;
+	
+	if(name.value.match(alph_rx)){
+		return true;
+	}
+	
+	else 
+	{
+		alert("please enter letters only");
+		return false;
+	}
+	
+}
+
+</script>
+</html>
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><h1>Welcome to HTML page</h1> 
+<h1 id="demo"> </h1>
+
+</head>
+<body>
+
+<input type = "button" onclick = "display_name()" value = "Display">  
+<script>
+function display_name()
+{
+	var firstName = localStorage.getItem("firstName");
+	var lastName = localStorage.getItem("lastName");
+	
+
+	var demo_ele = document.getElementById("demo");
+	if(firstname && lastname)
+	{
+		demo_ele.textContent = firstName+ " "+lastName;
+	}
+	else 
+	{		   
+		demoElement.textContent = "No user information found.";
+	}
+}
+</script>
+</body>
+</html>
